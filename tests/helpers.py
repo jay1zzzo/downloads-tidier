@@ -2,11 +2,15 @@
 inside a throwaway folder that is deleted afterwards."""
 
 import hashlib
+import json
 import os
 import tempfile
 import time
 import unittest
+from collections import Counter
 from pathlib import Path
+
+from downloads_tidier import rules
 
 # Windows file attribute flags (used only to test Windows-specific behaviour).
 _WIN_HIDDEN = 0x2
@@ -56,6 +60,31 @@ def snapshot(folder):
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             result[relative] = ("file", info.st_size, info.st_mtime_ns, digest)
     return result
+
+
+def tree(folder):
+    """The set of every file path under `folder`, written with forward slashes."""
+    folder = Path(folder)
+    return {
+        path.relative_to(folder).as_posix()
+        for path in folder.rglob("*")
+        if path.is_file()
+    }
+
+
+def file_contents(folder):
+    """Count of each distinct file content under `folder`, ignoring the log."""
+    return Counter(
+        path.read_bytes()
+        for path in Path(folder).rglob("*")
+        if path.is_file() and path.name != rules.LOG_FILENAME
+    )
+
+
+def read_log(folder):
+    """Every record in the undo log, as a list of dicts."""
+    text = (Path(folder) / rules.LOG_FILENAME).read_text(encoding="utf-8")
+    return [json.loads(line) for line in text.splitlines()]
 
 
 def set_windows_attributes(path, hidden=False, system=False):

@@ -10,31 +10,14 @@ from unittest import mock
 
 from downloads_tidier import mover, rules
 from downloads_tidier.planner import Move, Plan, plan_moves
-from tests.helpers import TempFolderTestCase, make_file, snapshot
-
-
-def tree(folder):
-    """The set of every file path under `folder`, written with forward slashes."""
-    folder = Path(folder)
-    return {
-        path.relative_to(folder).as_posix()
-        for path in folder.rglob("*")
-        if path.is_file()
-    }
-
-
-def file_contents(folder):
-    """Count of each distinct file content under `folder`, ignoring the log."""
-    return Counter(
-        path.read_bytes()
-        for path in Path(folder).rglob("*")
-        if path.is_file() and path.name != rules.LOG_FILENAME
-    )
-
-
-def read_log(folder):
-    text = (Path(folder) / rules.LOG_FILENAME).read_text(encoding="utf-8")
-    return [json.loads(line) for line in text.splitlines()]
+from tests.helpers import (
+    TempFolderTestCase,
+    file_contents,
+    make_file,
+    read_log,
+    snapshot,
+    tree,
+)
 
 
 class ApplyTestCase(TempFolderTestCase):
@@ -444,7 +427,7 @@ class LogTests(ApplyTestCase):
 
         plan, result = self.tidy()
 
-        self.assertIn("nothing was moved", result.error)
+        self.assertIn("nothing was changed", result.error)
         self.assertEqual(result.moved, [])
         self.assertEqual(snapshot(self.folder), before)
 
