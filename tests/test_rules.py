@@ -95,5 +95,26 @@ class RuleTableTests(unittest.TestCase):
                 self.assertNotIn("\\", name)
 
 
+class SkipListTests(unittest.TestCase):
+    def test_skip_lists_are_lowercase_and_dot_free_where_required(self):
+        for name in rules.SKIP_FILE_NAMES:
+            with self.subTest(name=name):
+                self.assertEqual(name, name.lower())
+        for ext in rules.SHORTCUT_EXTENSIONS + rules.PARTIAL_DOWNLOAD_EXTENSIONS:
+            with self.subTest(ext=ext):
+                self.assertEqual(ext, ext.lower())
+                self.assertFalse(ext.startswith("."))
+
+    def test_required_skip_entries_are_present(self):
+        for name in (".ds_store", "desktop.ini", "thumbs.db"):
+            self.assertIn(name, rules.SKIP_FILE_NAMES)
+        for ext in ("crdownload", "part", "download", "tmp"):
+            self.assertIn(ext, rules.PARTIAL_DOWNLOAD_EXTENSIONS)
+        self.assertEqual(rules.RECENT_SECONDS, 600)
+
+    def test_the_log_name_is_hidden_so_it_is_never_sorted(self):
+        self.assertTrue(rules.LOG_FILENAME.startswith("."))
+
+
 if __name__ == "__main__":
     unittest.main()
