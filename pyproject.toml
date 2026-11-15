@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "downloads-tidier"
+dynamic = ["version"]
+description = "Safely sort a messy folder (like Downloads) into subfolders by file type."
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Jason Paguntalan" }]
+keywords = ["downloads", "organize", "files", "cleanup", "command-line"]
+classifiers = [
+    "Environment :: Console",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Utilities",
+]
+# No dependencies: the standard library is all this tool uses.
+dependencies = []
+
+[project.scripts]
+downloads-tidier = "downloads_tidier.cli:main"
+
+[tool.setuptools]
+packages = ["downloads_tidier"]
+
+[tool.setuptools.dynamic]
+version = { attr = "downloads_tidier.__version__" }

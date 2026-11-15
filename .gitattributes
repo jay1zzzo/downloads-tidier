@@ -1,0 +1,6 @@
+# Keep line endings the same on Windows, macOS and Linux.
+* text=auto
+*.py text eol=lf
+*.md text eol=lf
+*.toml text eol=lf
+*.yml text eol=lf
