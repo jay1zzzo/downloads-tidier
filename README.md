@@ -12,6 +12,19 @@ Downloads/
   report.pdf, photo.jpg, setup.exe, ...      →      Documents/  Images/  Installers/  ...
 ```
 
+## Before and after
+
+A real Downloads folder before running `apply`. This is a slice of 376 loose
+items (private files are cropped out, and a few thumbnails are pixelated):
+
+![A slice of a messy Downloads folder: installers, zip files, game clips and screenshots all mixed together](docs/images/before.png)
+
+And the same folder after `apply`. Downloads went from 376 items to 42. The
+loose files are now in eight category folders, next to the original subfolders
+(which the tool leaves alone) and the hidden undo log:
+
+![The same Downloads folder afterwards: Archives, Audio, Documents, Images, Installers, Other, Spreadsheets and Video folders, plus the hidden undo log file](docs/images/after.png)
+
 ## Quick start
 
 Get the code (download the ZIP or clone this repository), open a terminal in
