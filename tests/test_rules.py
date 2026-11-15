@@ -19,6 +19,8 @@ class CategoryForTests(unittest.TestCase):
             "app.dmg": "Installers",
             "clip.mp4": "Video",
             "song.mp3": "Audio",
+            "photo.avif": "Images",
+            "saved-email.eml": "Documents",
         }
         for name, expected in examples.items():
             with self.subTest(name=name):

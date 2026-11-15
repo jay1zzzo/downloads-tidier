@@ -11,11 +11,11 @@ from pathlib import Path
 # Each extension should appear in only one category (a test checks this).
 CATEGORIES = {
     "Images": (
-        "jpg", "jpeg", "png", "gif", "webp", "heic", "bmp", "tiff", "svg",
+        "jpg", "jpeg", "png", "gif", "webp", "avif", "heic", "bmp", "tiff", "svg",
     ),
     "Documents": (
         "pdf", "doc", "docx", "txt", "rtf", "odt", "md", "pages",
-        "ppt", "pptx", "key",
+        "ppt", "pptx", "key", "eml",
     ),
     "Spreadsheets": (
         "xls", "xlsx", "csv", "ods", "numbers",

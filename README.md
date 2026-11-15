@@ -43,6 +43,60 @@ python -m downloads_tidier apply --folder ~/Desktop
 
 **Always run a preview first and read it.** Nothing is moved until you run `apply`.
 
+## New to the terminal? Step by step
+
+**1. Open a terminal in the project folder.**
+
+- **Windows:** open the `downloads-tidier` folder in File Explorer, right-click
+  an empty space, and choose **Open in Terminal** (on Windows 11 you may need
+  **Show more options** first). Or press the Windows key, type `Terminal`, press
+  Enter, then `cd` into the folder where you saved the project.
+- **macOS:** press Cmd+Space, type `Terminal`, press Enter, then `cd` into the
+  project folder. Use `python3` instead of `python` below.
+
+**2. Preview.** This shows what would happen and changes nothing:
+
+```bash
+python -m downloads_tidier
+```
+
+**3. Read the list.** The "Would move" part shows each file and the folder it
+would go into. The "Would skip" part shows what is left alone, and why.
+
+**4. If it looks right, apply.** Type the whole command, not just the word
+`apply`:
+
+```bash
+python -m downloads_tidier apply
+```
+
+**5. Changed your mind?** Put everything back:
+
+```bash
+python -m downloads_tidier undo
+```
+
+**Tips**
+
+- Close programs that have your files open (a Word document, a playing video).
+  Windows can't move open files, so the tool leaves them where they are and
+  lists them at the end.
+- Keep the hidden `.downloads-tidier-log.jsonl` file in the folder until you are
+  happy with the result. `undo` needs it.
+- New downloads later? Run `apply` again whenever you like. Files changed in the
+  last 10 minutes are skipped, so a very fresh download waits for next time.
+- The tool only sorts files into the category folders going forward. It never
+  looks inside the folders it made or inside your own subfolders.
+
+**If something goes wrong**
+
+| You see | What to do |
+|---|---|
+| `apply : The term 'apply' is not recognized` | You typed only the word `apply`. Type `python -m downloads_tidier apply`. |
+| `python is not recognized` | Close the terminal and open a new one. On Windows you can also try `py -m downloads_tidier`. |
+| `No module named downloads_tidier` | The terminal isn't in the project folder. `cd` into it and try again. |
+| It can't find your Downloads folder | Point it at the folder with `--folder "path\to\folder"`. |
+
 ## What it looks like
 
 Preview (the default):
@@ -80,8 +134,8 @@ To move these files for real, run again with "apply".
 
 | Folder | File types |
 |---|---|
-| Images | jpg, jpeg, png, gif, webp, heic, bmp, tiff, svg |
-| Documents | pdf, doc, docx, txt, rtf, odt, md, pages, ppt, pptx, key |
+| Images | jpg, jpeg, png, gif, webp, avif, heic, bmp, tiff, svg |
+| Documents | pdf, doc, docx, txt, rtf, odt, md, pages, ppt, pptx, key, eml |
 | Spreadsheets | xls, xlsx, csv, ods, numbers |
 | Archives | zip, rar, 7z, tar, gz, tgz, bz2, xz |
 | Installers | exe, msi, dmg, pkg, appimage, deb, rpm, iso |
