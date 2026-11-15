@@ -15,7 +15,7 @@ Downloads/
 ## Before and after
 
 A real Downloads folder before running `apply`. This is a slice of 376 loose
-items (private files are cropped out, and a few thumbnails are pixelated):
+items (private files are cropped out, and a few thumbnails are greyed out):
 
 ![A slice of a messy Downloads folder: installers, zip files, game clips and screenshots all mixed together](docs/images/before.png)
 
