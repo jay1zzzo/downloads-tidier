@@ -1,5 +1,7 @@
 # downloads-tidier
 
+![downloads-tidier: sort a messy Downloads folder by file type, safely. Preview, apply, undo.](docs/images/social-preview.png)
+
 A small command-line tool that sorts the files in a messy folder (usually
 Downloads) into subfolders by file type, **safely**.
 
