@@ -59,7 +59,8 @@ PARTIAL_DOWNLOAD_EXTENSIONS = (
 RECENT_SECONDS = 10 * 60
 
 # The undo log the tool keeps inside the chosen folder. Never moved.
-LOG_FILENAME = ".downloads-tidier-log.json"
+# ".jsonl" = one JSON record per line, only ever added to at the end.
+LOG_FILENAME = ".downloads-tidier-log.jsonl"
 
 # Every folder name the tool may create, in a fixed order.
 ALL_CATEGORIES = tuple(CATEGORIES) + (OTHER,)

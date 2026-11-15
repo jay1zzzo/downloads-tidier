@@ -69,7 +69,7 @@ def unique_name(name, taken):
             return candidate
 
 
-def _inspect_category(folder, category):
+def inspect_category_folder(folder, category):
     """Check a category folder. Returns (problem, taken_names).
 
     `problem` is None if the folder is fine to move files into (it either
@@ -105,7 +105,7 @@ def plan_moves(folder, now=None):
     for source in scan.candidates:
         category = category_for(source.name)
         if category not in inspected:
-            inspected[category] = _inspect_category(folder, category)
+            inspected[category] = inspect_category_folder(folder, category)
         problem, taken = inspected[category]
         if problem:
             skipped.append((source, problem))
